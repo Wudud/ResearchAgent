@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+  research-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: research-agent:latest
+    container_name: research-agent
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./workspace:/app/workspace
+      - ./configs:/app/configs
+      - ./logs:/app/logs
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    profiles: [gpu]
+    restart: unless-stopped
+
+  research-agent-cpu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: research-agent:latest
+    container_name: research-agent-cpu
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./workspace:/app/workspace
+      - ./configs:/app/configs
+      - ./logs:/app/logs
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+    restart: unless-stopped
+
+  research-agent-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: research-agent:dev
+    container_name: research-agent-dev
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+      - /app/.venv
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+    profiles: [dev]
+    restart: unless-stopped

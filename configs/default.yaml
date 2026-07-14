@@ -1,0 +1,91 @@
+agent:
+  name: ResearchAgent
+  version: "0.2.0"
+  workspace_dir: "./workspace"
+
+llm:
+  default_provider: deepseek
+  providers:
+    openai:
+      api_key: ${OPENAI_API_KEY}
+      base_url: https://api.openai.com/v1
+      model: gpt-4o
+      temperature: 0.3
+      max_tokens: 4096
+    deepseek:
+      api_key: ${OPENAI_API_KEY}
+      base_url: https://api.deepseek.com/v1
+      model: deepseek-chat
+      temperature: 0.3
+      max_tokens: 4096
+
+dataset:
+  root_dir: "./workspace/datasets"
+  allowed_extensions: [".ply", ".pcd", ".pts", ".xyz", ".xyzrgb", ".npy"]
+
+logging:
+  level: INFO
+  log_dir: "./logs"
+  max_bytes_per_file: 10485760
+  backup_count: 3
+
+asr:
+  default_provider: local
+  providers:
+    local:
+      model_size: base
+      device: cpu
+      compute_type: int8
+    openai:
+      api_key: ${OPENAI_API_KEY}
+      model: whisper-1
+      language: zh
+
+chat:
+  context_window: 20
+  upload_dir: "./workspace/uploads"
+  db_path: "./workspace/chat_history.db"
+
+embedding:
+  default_provider: local
+  providers:
+    local:
+      model_name: all-MiniLM-L6-v2
+      device: cpu
+    openai:
+      api_key: ${OPENAI_API_KEY}
+      base_url: https://api.openai.com/v1
+      model: text-embedding-3-small
+
+knowledge:
+  persist_dir: "./workspace/chroma_db"
+  reranker_model: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+
+vision:
+  default_provider: null
+  providers:
+    openai:
+      api_key: ${OPENAI_API_KEY}
+      base_url: https://api.openai.com/v1
+      model: gpt-4o
+
+workspace:
+  uploads_dir: "./workspace/uploads"
+  meetings_dir: "./workspace/meetings"
+  papers_dir: "./workspace/papers"
+  reports_dir: "./workspace/reports"
+
+agents:
+  react:
+    max_iterations: 5
+    timeout: 300
+    enable_reflection: false
+
+mcp:
+  enabled: true
+  server_name: ResearchAgent
+  protocol_version: "2024-11-05"
+
+web:
+  host: localhost
+  port: 8501

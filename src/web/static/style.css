@@ -1,0 +1,273 @@
+/* ============================================
+   ResearchAgent — Swiss Spa Minimalist
+   Monochrome + one muted sage accent.
+   Generous whitespace, clean typography,
+   no decoration that doesn't earn its place.
+   ============================================ */
+
+/* ---------- Global ---------- */
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.main .block-container {
+    max-width: 1160px;
+}
+
+h1 { font-weight: 600; font-size: 1.5rem; color: #171717; letter-spacing: -0.01em; }
+h2 { font-weight: 500; font-size: 1.15rem; color: #171717; letter-spacing: -0.005em; }
+h3 { font-weight: 500; font-size: 1rem; color: #404040; }
+
+/* ---------- Sidebar ---------- */
+[data-testid="stSidebar"] {
+    background: #F5F5F3 !important;
+    border-right: 1px solid #EBEBEB !important;
+}
+[data-testid="stSidebar"] .stMarkdown,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] .stCaption,
+[data-testid="stSidebar"] p {
+    color: #404040 !important;
+}
+
+[data-testid="stSidebar"] .stButton > button {
+    background: transparent !important;
+    color: #525252 !important;
+    border: none !important;
+    text-align: left !important;
+    padding: 0.35rem 1.25rem !important;
+    font-size: 0.85rem !important;
+    border-radius: 0 !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    transition: color 0.15s ease !important;
+}
+[data-testid="stSidebar"] .stButton > button:hover {
+    background: transparent !important;
+    color: #171717 !important;
+}
+[data-testid="stSidebar"] .stButton > button:focus {
+    background: transparent !important;
+    color: #5C8370 !important;
+    outline: none !important;
+}
+
+[data-testid="stSidebar"] .stButton > button:has(div:contains("系统概览")),
+[data-testid="stSidebar"] hr {
+    border: none !important;
+    border-top: 1px solid #EBEBEB !important;
+    margin: 0.75rem 1rem !important;
+    width: calc(100% - 2rem) !important;
+}
+
+[data-testid="stSidebar"] input,
+[data-testid="stSidebar"] .stTextInput input {
+    background: #FFFFFF !important;
+    border: 1px solid #E5E5E5 !important;
+    border-radius: 4px !important;
+    color: #171717 !important;
+    padding: 0.4rem 0.75rem !important;
+}
+
+/* ---------- Nav header ---------- */
+.ra-nav-header {
+    padding: 2rem 1.25rem 1.5rem 1.25rem;
+    border-bottom: 1px solid #EBEBEB;
+    margin-bottom: 1rem;
+}
+.ra-nav-brand {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #171717;
+    letter-spacing: -0.01em;
+}
+.ra-nav-version {
+    font-size: 0.7rem;
+    color: #A3A3A3;
+    margin-top: 0.25rem;
+    font-weight: 400;
+}
+
+.ra-nav-section {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #A3A3A3;
+    letter-spacing: 0.06em;
+    padding: 1.25rem 1.25rem 0.4rem 1.25rem;
+}
+
+/* Sidebar nav active indicator */
+.ra-nav-active {
+    border-left: 2px solid #5C8370;
+    padding-left: 1rem;
+    color: #171717;
+    font-weight: 500;
+}
+
+/* ---------- Page header ---------- */
+.ra-page-header {
+    padding-bottom: 1.25rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #EBEBEB;
+}
+.ra-page-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #171717;
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.01em;
+}
+.ra-page-desc {
+    font-size: 0.85rem;
+    color: #737373;
+    font-weight: 400;
+}
+
+/* ---------- Metrics ---------- */
+.ra-metric-row {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+.ra-metric {
+    flex: 1;
+    min-width: 120px;
+    padding: 1.25rem 1.25rem 1rem 1.25rem;
+    background: #FFFFFF;
+    border: 1px solid #EBEBEB;
+}
+.ra-metric-label {
+    font-size: 0.7rem;
+    color: #A3A3A3;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+}
+.ra-metric-value {
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: #171717;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+/* ---------- Section ---------- */
+.ra-section {
+    background: #FFFFFF;
+    border: 1px solid #EBEBEB;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+/* ---------- Status badges ---------- */
+.ra-badge {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    border-radius: 100px;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+.ra-badge.completed,
+.ra-badge.success    { background: #EDF5F0; color: #4A7C63; }
+.ra-badge.in-progress,
+.ra-badge.warning    { background: #F8F4EC; color: #9B8044; }
+.ra-badge.pending,
+.ra-badge.info       { background: #ECF0F5; color: #5A7494; }
+.ra-badge.terminated,
+.ra-badge.error      { background: #F6EDED; color: #9B5A5A; }
+
+/* ---------- Data table ---------- */
+.ra-table-wrap {
+    border: 1px solid #EBEBEB;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+}
+
+/* ---------- Delete confirm ---------- */
+.ra-confirm {
+    background: #F6EDED;
+    border: 1px solid #E8D0D0;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    font-size: 0.82rem;
+    color: #9B5A5A;
+}
+
+/* ---------- Empty state ---------- */
+.ra-empty {
+    text-align: center;
+    padding: 3rem 0;
+    color: #A3A3A3;
+    font-size: 0.85rem;
+}
+
+/* ---------- Misc ---------- */
+.stTabs [data-baseweb="tab-list"] { gap: 0; }
+.stTabs [data-baseweb="tab"] {
+    border-radius: 0 !important;
+    font-size: 0.82rem !important;
+    padding: 0.6rem 1rem !important;
+    color: #737373 !important;
+    border-bottom: 2px solid transparent !important;
+    background: transparent !important;
+}
+.stTabs [data-baseweb="tab"][aria-selected="true"] {
+    color: #171717 !important;
+    border-bottom-color: #5C8370 !important;
+}
+
+[data-testid="stMetricValue"] { color: #171717 !important; font-weight: 500 !important; }
+
+[data-testid="stExpander"] {
+    border: 1px solid #EBEBEB !important;
+    border-radius: 0 !important;
+    margin-bottom: 0.5rem !important;
+}
+[data-testid="stExpander"] summary {
+    font-size: 0.82rem !important;
+    color: #525252 !important;
+    padding: 0.65rem 1rem !important;
+}
+
+.main input:focus-visible,
+.main button:focus-visible,
+.main textarea:focus-visible {
+    outline: none !important;
+    border-color: #5C8370 !important;
+    box-shadow: 0 0 0 1px #5C8370 !important;
+}
+
+/* Streamlit default widget refinements */
+.stButton > button {
+    border-radius: 4px !important;
+    font-weight: 400 !important;
+    font-size: 0.82rem !important;
+    padding: 0.45rem 1rem !important;
+    border: 1px solid #D4D4D4 !important;
+    background: #FFFFFF !important;
+    color: #525252 !important;
+    transition: all 0.15s ease !important;
+}
+.stButton > button:hover {
+    border-color: #A3A3A3 !important;
+    color: #171717 !important;
+    background: #FAFAFA !important;
+}
+.stButton > button[kind="primary"] {
+    background: #5C8370 !important;
+    border-color: #5C8370 !important;
+    color: #FFFFFF !important;
+}
+.stButton > button[kind="primary"]:hover {
+    background: #4A6B5A !important;
+    border-color: #4A6B5A !important;
+}
+
+select, .stSelectbox > div > div {
+    border-radius: 4px !important;
+    border-color: #D4D4D4 !important;
+}
