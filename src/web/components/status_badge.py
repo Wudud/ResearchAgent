@@ -1,5 +1,8 @@
 """
-状态徽章组件 - Corporate Blue风格彩色状态标签。
+状态徽章组件 - 显示状态的彩色标签组件。
+
+支持自定义颜色映射和状态文本。
+使用HTML/CSS渲染带颜色的状态标识。
 """
 
 import streamlit as st
@@ -14,13 +17,13 @@ def render_badge(status: str) -> str:
     Returns:
         str: HTML格式的徽章标记
     """
-    label_map = {
-        "completed": "Completed",
-        "active": "Active",
-        "pending": "Pending",
-        "error": "Error",
-        "running": "Running",
-        "failed": "Failed",
+    colors = {
+        "completed": "#28a745",
+        "active": "#007bff",
+        "pending": "#ffc107",
+        "error": "#dc3545",
+        "running": "#17a2b8",
+        "failed": "#dc3545",
     }
-    display = label_map.get(status.lower(), status)
-    return f'<span class="ra-badge {status.lower()}">{display}</span>'
+    color = colors.get(status.lower(), "#6c757d")
+    return f'<span style="background:{color};color:white;padding:2px 8px;border-radius:10px;font-size:0.8em">{status}</span>'

@@ -1,12 +1,15 @@
 """
-页面头部组件 - 统一的Corporate Blue标题和描述组件。
+页面头部组件 - 统一的页面标题和描述组件。
+
+使用自定义CSS样式渲染简洁的页面标题区域，
+支持可选的描述文本。
 """
 
 import streamlit as st
 
 
 def render_page_header(title: str, description: str = None):
-    """渲染页面标题和描述。
+    """渲染页面标题和可选描述。
 
     Args:
         title: 页面标题
