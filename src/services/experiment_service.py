@@ -15,8 +15,9 @@ from src.persistence.experiment_repository import ExperimentRepository
 class ExperimentService:
     """实验服务 - 实验管理的核心业务逻辑。"""
 
-    def __init__(self, llm_service: LLMService = None, experiment_repo: ExperimentRepository = None):
+    def __init__(self, llm_service: LLMService = None, prompt_service=None, experiment_repo: ExperimentRepository = None):
         self._llm = llm_service
+        self._prompts = prompt_service
         self._repo = experiment_repo
         self._logger = logging.getLogger("ResearchAgent.ExperimentService")
 

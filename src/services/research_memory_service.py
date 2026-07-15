@@ -8,9 +8,6 @@ class ResearchMemoryService:
         self._semantic = semantic_store
         self._logger = logging.getLogger("ResearchAgent.ResearchMemoryService")
 
-        mem = ResearchMemory(category=category, title=title, content=content, source=source, importance=importance)
-        return self._repo.save(mem)
-
     def get_memory(self, memory_id: str) -> ResearchMemory | None:
         return self._repo.get(memory_id)
 
