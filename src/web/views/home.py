@@ -1,7 +1,7 @@
 """
 主页视图模块 - 系统仪表板页面。
 
-展示系统状态、最近活动和快速操作入口。
+展示系统状态和各模块入口引导。
 """
 
 import streamlit as st
@@ -18,7 +18,6 @@ def render(agent):
     """
     render_page_header("System Overview", "ResearchAgent Status & Capabilities")
 
-    # 系统状态指标
     metrics = [
         {"label": "LLM", "value": "Ready" if agent.llm_service else "Not Configured"},
         {"label": "Embedding", "value": "Ready" if agent.embedding_service and agent.embedding_service.available else "Not Available"},
@@ -31,16 +30,4 @@ def render(agent):
 
     st.markdown("---")
     st.markdown("### Quick Actions")
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        if st.button("Assistant", key="qa_asst", use_container_width=True):
-            st.session_state["nav_page"] = "Assistant"
-            st.rerun()
-    with col2:
-        if st.button("Dataset Manager", key="qa_ds", use_container_width=True):
-            st.session_state["nav_page"] = "Dataset"
-            st.rerun()
-    with col3:
-        if st.button("Knowledge Base", key="qa_kb", use_container_width=True):
-            st.session_state["nav_page"] = "Knowledge"
-            st.rerun()
+    st.info("Use the **sidebar navigation** on the left to access all modules: Assistant, Dataset, Knowledge Base, Meeting Analysis, Paper Analysis, Experiment Tracker, and Task Manager.")
