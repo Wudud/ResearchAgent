@@ -26,11 +26,6 @@ def load_css():
             st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
-def on_nav_change():
-    """导航切换回调 — 由st.radio的on_change触发，避免rerun竞态。"""
-    st.session_state["nav_page"] = st.session_state["_nav_radio"]
-
-
 def render_nav():
     """渲染Corporate Blue侧边栏导航。"""
     with st.sidebar:
@@ -56,20 +51,18 @@ def render_nav():
             "Experiment": "Experiment Tracker",
             "Task": "Task Manager",
         }
-        page_keys = list(labels.keys())
 
-        current = st.session_state["nav_page"]
-        default_idx = page_keys.index(current) if current in page_keys else 0
-
-        st.radio(
+        page = st.radio(
             "Workspace",
-            page_keys,
-            index=default_idx,
-            key="_nav_radio",
+            list(labels.keys()),
+            index=list(labels.keys()).index(st.session_state["nav_page"]),
             label_visibility="collapsed",
             format_func=lambda x: labels[x],
-            on_change=on_nav_change,
         )
+
+        if page != st.session_state["nav_page"]:
+            st.session_state["nav_page"] = page
+            st.rerun()
 
         st.markdown("---")
         st.markdown("""
