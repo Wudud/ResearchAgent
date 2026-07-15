@@ -62,15 +62,19 @@ def render(agent):
     with col1:
         if st.button("AI Assistant", key="qa_assistant", use_container_width=True):
             st.session_state["nav_page"] = "Assistant"
+            st.rerun()
     with col2:
         if st.button("Knowledge Base", key="qa_knowledge", use_container_width=True):
             st.session_state["nav_page"] = "Knowledge"
+            st.rerun()
     with col3:
         if st.button("Dataset Manager", key="qa_dataset", use_container_width=True):
             st.session_state["nav_page"] = "Dataset"
+            st.rerun()
     with col4:
         if st.button("Experiment Tracker", key="qa_experiment", use_container_width=True):
             st.session_state["nav_page"] = "Experiment"
+            st.rerun()
 
     # Agent Capabilities
     st.markdown("---")
