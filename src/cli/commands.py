@@ -72,6 +72,20 @@ def cmd_web(args):
         os.environ["RESEARCHAGENT_CONFIG"] = args.config
     subprocess.run(cmd)
 
+
+def cmd_agent(args):
+    """Run an autonomous agent with a goal."""
+    import os
+    if hasattr(args, 'config') and args.config:
+        os.environ["RESEARCHAGENT_CONFIG"] = args.config
+    from src.core.agent import ResearchAgent
+    agent = ResearchAgent(getattr(args, 'config', None))
+    agent.initialize(quiet=True)
+    coordinator = agent.coordinator
+    result = coordinator.run_agent(args.type, args.goal)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
 def cmd_mcp_server(args):
     """Start the MCP server in stdio mode.
 
