@@ -33,8 +33,14 @@ def render(agent):
     st.markdown("### Quick Actions")
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.page_link("views/assistant.py", label="Assistant")
+        if st.button("Assistant", key="qa_asst", use_container_width=True):
+            st.session_state["nav_page"] = "Assistant"
+            st.rerun()
     with col2:
-        st.page_link("views/dataset.py", label="Dataset Manager")
+        if st.button("Dataset Manager", key="qa_ds", use_container_width=True):
+            st.session_state["nav_page"] = "Dataset"
+            st.rerun()
     with col3:
-        st.page_link("views/knowledge.py", label="Knowledge Base")
+        if st.button("Knowledge Base", key="qa_kb", use_container_width=True):
+            st.session_state["nav_page"] = "Knowledge"
+            st.rerun()
