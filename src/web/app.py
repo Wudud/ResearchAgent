@@ -9,7 +9,7 @@ from pathlib import Path
 
 st.set_page_config(
     page_title="ResearchAgent",
-    page_icon="O",
+    page_icon="static/favicon.png",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -38,41 +38,31 @@ def render_nav():
 
         st.markdown('<div class="ra-nav-section">Workspace</div>', unsafe_allow_html=True)
 
-        if "nav_page" not in st.session_state:
-            st.session_state["nav_page"] = "Home"
-
-        labels = {
-            "Home": "System Overview",
-            "Assistant": "AI Assistant",
-            "Knowledge": "Knowledge Base",
-            "Dataset": "Dataset Manager",
-            "Meeting": "Meeting Analysis",
-            "Paper": "Paper Analysis",
-            "Experiment": "Experiment Tracker",
-            "Task": "Task Manager",
-        }
-
         page = st.radio(
             "Workspace",
-            list(labels.keys()),
-            index=list(labels.keys()).index(st.session_state["nav_page"]),
+            ["Home", "Assistant", "Knowledge", "Dataset", "Meeting", "Paper", "Experiment", "Task"],
             label_visibility="collapsed",
-            format_func=lambda x: labels[x],
+            format_func=lambda x: {
+                "Home": "System Overview",
+                "Assistant": "AI Assistant",
+                "Knowledge": "Knowledge Base",
+                "Dataset": "Dataset Manager",
+                "Meeting": "Meeting Analysis",
+                "Paper": "Paper Analysis",
+                "Experiment": "Experiment Tracker",
+                "Task": "Task Manager",
+            }.get(x, x),
         )
 
-        if page != st.session_state["nav_page"]:
-            st.session_state["nav_page"] = page
-            st.rerun()
-
         st.markdown("---")
-        st.markdown("""
+        st.markdown(f"""
         <div style="padding: 1rem 1.5rem; font-size: 0.7rem; color: rgba(255,255,255,0.3);">
             ResearchAgent v0.2.0<br>
             DairySheepHR Project
         </div>
         """, unsafe_allow_html=True)
 
-    return st.session_state["nav_page"]
+    return page
 
 
 def main():
@@ -93,8 +83,11 @@ def main():
         "Task": task,
     }
 
-    view = views.get(page, home)
-    view.render(agent)
+    render_func = views.get(page, home.render)
+    if callable(render_func):
+        render_func(agent)
+    else:
+        render_func(agent)
 
 
 if __name__ == "__main__":
