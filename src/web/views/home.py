@@ -60,13 +60,21 @@ def render(agent):
     st.markdown("### Quick Actions")
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.page_link("views/assistant.py", label="AI Assistant", icon=":material/chat:")
+        if st.button("AI Assistant", key="qa_assistant", use_container_width=True):
+            st.session_state["nav_page"] = "Assistant"
+            st.rerun()
     with col2:
-        st.page_link("views/knowledge.py", label="Knowledge Base", icon=":material/search:")
+        if st.button("Knowledge Base", key="qa_knowledge", use_container_width=True):
+            st.session_state["nav_page"] = "Knowledge"
+            st.rerun()
     with col3:
-        st.page_link("views/dataset.py", label="Dataset Manager", icon=":material/folder:")
+        if st.button("Dataset Manager", key="qa_dataset", use_container_width=True):
+            st.session_state["nav_page"] = "Dataset"
+            st.rerun()
     with col4:
-        st.page_link("views/experiment.py", label="Experiment Tracker", icon=":material/science:")
+        if st.button("Experiment Tracker", key="qa_experiment", use_container_width=True):
+            st.session_state["nav_page"] = "Experiment"
+            st.rerun()
 
     # Agent Capabilities
     st.markdown("---")

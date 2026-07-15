@@ -5,5 +5,5 @@ from src.core.agent import ResearchAgent
 @st.cache_resource
 def get_agent() -> ResearchAgent:
     agent = ResearchAgent()
-    agent.initialize()
+    agent.initialize(quiet=True)
     return agent
